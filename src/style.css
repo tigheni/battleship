@@ -1,0 +1,58 @@
+body {
+    background-color: #022f40;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+header {
+    background-color: #0090c1;
+    padding: 10px 0;
+    text-align: center;
+}
+.main_game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#start-game,
+#reset-game {
+    color: #022f40;
+    font-weight: 800;
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    background-color: #38aecc;
+    border: 0;
+    border-radius: 20px;
+}
+#game-board {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+#game-board > div {
+    width: 40vw;
+}
+h2 {
+    text-align: center;
+}
+
+#player1-board,
+#player2-board {
+    display: grid;
+    gap: 5px;
+    padding: 15px;
+}
+
+#player1-board div,
+#player2-board div {
+    border: 1px solid #ccc;
+    width: 10px;
+    height: 10px;
+    padding: 15px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+}
