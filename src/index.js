@@ -1,5 +1,8 @@
 import './style.css';
 import { boardRender } from './renderBoard.js';
+import { gameStart } from './gameStart.js';
+import { checkGame } from './checkTheGame.js';
+
 export class Ship {
     constructor(length, damage) {
         this.length = length;
@@ -18,7 +21,6 @@ export class GameBoard {
             .fill(null)
             .map(() => Array(10).fill(null));
         this.ships = [];
-        console.log(this.ships);
     }
     placaship(ship, x, y, vertical) {
         if (vertical) {
@@ -34,10 +36,12 @@ export class GameBoard {
     }
     receiveAttack(x, y) {
         if (this.board[x][y] === null) {
+            // Cell is empty, mark it as a miss
             this.board[x][y] = 'miss';
         } else {
+            // Cell contains a ship, call hit() method
             this.board[x][y].hit();
-            this.board[x][y] = 'hit';
+            this.board[x][y] = 'hit'; // Mark the cell as hit
         }
     }
     checkIsSunck() {
@@ -53,6 +57,7 @@ export class GameBoard {
 export class RealPlayer {
     constructor() {
         this.board = new GameBoard();
+        this.turn = true;
     }
     attack(opponent, x, y) {
         opponent.board.receiveAttack(x, y);
@@ -61,6 +66,7 @@ export class RealPlayer {
 export class ComputerPlayer {
     constructor() {
         this.board = new GameBoard();
+        this.turn = false;
     }
     attack(opponent) {
         let x = Math.floor(Math.random() * 10);
@@ -72,46 +78,13 @@ export class ComputerPlayer {
         opponent.board.receiveAttack(x, y);
     }
 }
-/* const player = new RealPlayer();
+const player = new RealPlayer();
 const computer = new ComputerPlayer();
 
-boardRender('player1-board', player.board.board);
-boardRender('player2-board', computer.board.board);
-
-const playercells = document.querySelectorAll('#player2-board .cell');
-player.board.placaship(new Ship(1, 0), 0, 0, true);
-computer.board.placaship(new Ship(1, 0), 0, 0, true);
-playercells.forEach((cell) => {
-    cell.addEventListener('click', (e) => {
-        const x = e.target.dataset.x;
-        const y = e.target.dataset.y;
-
-        player.attack(computer, x, y);
-        computer.attack(player);
-    });
-}); */
-document.addEventListener('DOMContentLoaded', () => {
-    const player = new RealPlayer();
-    const computer = new ComputerPlayer();
-    boardRender('player1-board', player.board.board);
-    boardRender('player2-board', computer.board.board);
-    const playercells = document.querySelectorAll('#player2-board .cell');
-    player.board.placaship(new Ship(1, 0), 0, 0, true);
-    computer.board.placaship(new Ship(1, 0), 0, 0, true);
-    playercells.forEach((cell) => {
-        cell.addEventListener('click', (e) => {
-            const x = e.target.dataset.x;
-            const y = e.target.dataset.y;
-            player.attack(computer, x, y);
-            computer.attack(player);
-            boardRender('player1-board', player.board.board);
-            boardRender('player2-board', computer.board.board);
-            if (player.board.allSunk()) {
-                alert('Computer wins');
-            }
-            if (computer.board.allSunk()) {
-                alert('Player wins');
-            }
-        });
-    });
-});
+player.board.placaship(new Ship(5, 0), 0, 0, false);
+computer.board.placaship(new Ship(5, 0), 0, 0, true);
+player.board.placaship(new Ship(4, 0), 1, 1, false);
+computer.board.placaship(new Ship(4, 0), 1, 1, true);
+boardRender('player-board', player.board.board);
+boardRender('computer-board', computer.board.board);
+gameStart(boardRender, player, computer);
