@@ -10,28 +10,31 @@
             <h1>Battleship</h1>
         </header>
         <main class="main_game">
-            <section>
-                <h2>Game Board</h2>
-                <div id="game-board">
-                    <div id="player-container">
-                        <h2>Player 1</h2>
-                        <div id="player-board" class="board-container"></div>
-                    </div>
-                    <div id="computer-container">
-                        <h2>Player 2</h2>
-                        <div id="computer-board" class="board-container"></div>
-                    </div>
+            <h2>Game Board</h2>
+            <section id="game-board">
+                <div id="player-container">
+                    <h2>Player 1</h2>
+                    <div id="player-board" class="board-container"></div>
+                </div>
+                <div id="computer-container">
+                    <h2>Player 2</h2>
+                    <div id="computer-board" class="board-container"></div>
                 </div>
             </section>
             <section>
                 <h2>Game Controls</h2>
-                <button id="start-game">Start Game</button>
-                <button id="reset-game">Reset Game</button>
+                <button class="btn" id="start-game">Start Game</button>
+                <button class="btn" id="reset-game">Reset Game</button>
             </section>
-            <section>
-                <h2>Game message</h2>
+            <section class="game-talking">
+                <h2>Game Log</h2>
                 <p id="game-message"></p>
             </section>
+            <div class="custom-prompt" id="prompt-box">
+                <h2 class="game-alert">you won</h2>
+                <button class="btn" id="reset-game">Reset Game</button>
+            </div>
+            <section class="ships"></section>
         </main>
     </body>
 </html>

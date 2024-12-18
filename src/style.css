@@ -20,8 +20,67 @@ header {
     justify-content: center;
     align-items: center;
 }
-#start-game,
-#reset-game {
+#game-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#player-container h2,
+#computer-container h2 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+#player-board,
+#computer-board {
+    display: grid;
+    padding: 15px;
+    gap: 5px;
+    width: 50%;
+    height: 50%;
+}
+#player-board div,
+#computer-board div {
+    border: 1px solid #ccc;
+    width: 3px;
+    height: 3px;
+    padding: 15px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+}
+.custom-prompt {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    color: black;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    width: 25%;
+    height: auto;
+    z-index: 100;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+.custom-prompt h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.btn {
     color: #022f40;
     font-weight: 800;
     padding: 10px;
@@ -31,35 +90,8 @@ header {
     border: 0;
     border-radius: 20px;
 }
-#game-board {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50vw;
-}
-#game-board > div {
-    width: 35vw;
-}
-h2 {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-#player-board,
-#computer-board {
-    display: grid;
-    padding: 15px;
-    gap: 5px;
-    width: 50%;
-    height: 50%;
-}
-
-#player-board div,
-#computer-board div {
-    border: 1px solid #ccc;
-    width: 3px;
-    height: 3px;
-    padding: 15px;
-    cursor: pointer;
-    font-family: Arial, sans-serif;
+.game-talking {
+    position: fixed;
+    top: 30%;
+    left: 5%;
 }

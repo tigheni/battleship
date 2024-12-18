@@ -36,12 +36,10 @@ export class GameBoard {
     }
     receiveAttack(x, y) {
         if (this.board[x][y] === null) {
-            // Cell is empty, mark it as a miss
             this.board[x][y] = 'miss';
         } else {
-            // Cell contains a ship, call hit() method
             this.board[x][y].hit();
-            this.board[x][y] = 'hit'; // Mark the cell as hit
+            this.board[x][y] = 'hit';
         }
     }
     checkIsSunck() {
@@ -75,6 +73,23 @@ export class ComputerPlayer {
             x = Math.floor(Math.random() * 10);
             y = Math.floor(Math.random() * 10);
         }
+        if (opponent.board.board[x][y] === 'hit') {
+            let direction = Math.floor(Math.random() * 4);
+            switch (direction) {
+                case 0:
+                    x++;
+                    break;
+                case 1:
+                    x--;
+                    break;
+                case 2:
+                    y++;
+                    break;
+                case 3:
+                    y--;
+                    break;
+            }
+        }
         opponent.board.receiveAttack(x, y);
     }
 }
@@ -87,4 +102,5 @@ player.board.placaship(new Ship(4, 0), 1, 1, false);
 computer.board.placaship(new Ship(4, 0), 1, 1, true);
 boardRender('player-board', player.board.board);
 boardRender('computer-board', computer.board.board);
+
 gameStart(boardRender, player, computer);
